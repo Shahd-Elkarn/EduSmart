@@ -141,7 +141,6 @@ function renderNavbarUser() {
   }
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   renderNavbarUser();
-//   protectPage(); // لو الصفحة محتاجة حماية
-// });
+document.addEventListener("DOMContentLoaded", () => {
+  renderNavbarUser();
+});

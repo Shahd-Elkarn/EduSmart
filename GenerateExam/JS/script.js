@@ -68,9 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // حماية الصفحة + عرض اسم المستخدم وزر Logout
-  protectPage();
-  renderNavbarUser();
 
   // تحميل الكورسات
   loadCourses();
