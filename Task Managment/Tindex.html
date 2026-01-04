@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management - EduSmart</title>
+   <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">EduSmart</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#modules">Modules</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Course Management Container -->
+    <div class="container">
+        <h1>Daily Task Planner</h1>
+        <div>
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            <button class="btn btn-primary" id="addTaskBtn">Add</button>
+        </div>
+        <ul id="taskList"></ul>
+        <button class="btn btn-secondary" id="endDayBtn" style="margin-top:1rem; width:100%;">End of Day</button>
+    </div>
+<script src="JS/script.js"></script>
+</body>
+</html>

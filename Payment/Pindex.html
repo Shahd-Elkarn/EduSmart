@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - EduSmart</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">EduSmart</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#modules">Modules</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 id="planTitle">Payment</h1>
+        <form id="paymentForm">
+            <label for="cardName">Cardholder Name</label>
+            <input type="text" id="cardName" placeholder="Enter your name" required>
+
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required maxlength="19">
+
+            <label for="expiry">Expiry Date</label>
+            <input type="text" id="expiry" placeholder="MM/YY" required maxlength="5">
+
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="123" required maxlength="3">
+
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+    <!-- Success Message -->
+<div id="successOverlay" class="success-overlay hidden">
+  <div class="success-card">
+    <div class="success-icon">✔</div>
+    <h2>Payment Successful</h2>
+    <p id="successText">
+      Thank you for purchasing the selected plan.
+    </p>
+    <button id="goHomeBtn">Go to Home</button>
+  </div>
+</div>
+
+
+ <script src="JS/script.js"></script>
+
+</body>
+</html>

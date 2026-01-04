@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Exam - EduSmart</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+      <nav>
+        <div class="nav-container">
+            <div class="logo">EduSmart</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#modules">Modules</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+      <!-- شاشة البداية -->
+      <div id="startScreen" class="card">
+        <div class="icon">📚</div>
+        <h1>Online Exam Generator</h1>
+        <p class="subtitle">Test your knowledge in your favorite course</p>
+        <button class="btn" onclick="showSetup()">Generate Exam</button>
+      </div>
+
+      <!-- شاشة الإعدادات -->
+      <div id="setupScreen" class="card hidden">
+        <h2>Exam Settings</h2>
+
+        <div class="form-group">
+          <label>Number of Questions:</label>
+          <input
+            type="number"
+            id="numQuestions"
+            min="1"
+            max="10"
+            value="5"
+            placeholder="e.g., 10"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Course:</label>
+          <select id="course">
+            <option value="">-- Select Course --</option>
+          </select>
+        </div>
+
+        <button class="btn" onclick="generateExam()">Start Exam</button>
+      </div>
+
+      <!-- شاشة الامتحان -->
+      <div id="examScreen" class="card hidden">
+        <div class="exam-header">
+          <h1 id="examTitle">Exam</h1>
+          <span id="questionCount" class="badge"></span>
+        </div>
+
+        <div id="examForm"></div>
+
+        <button class="btn btn-submit" id="submitBtn" onclick="submitExam()">
+          Submit
+        </button>
+      </div>
+
+      <!-- شاشة النتيجة -->
+      <div id="resultScreen" class="card hidden">
+        <div class="result-card">
+          <div class="result-icon" id="resultIcon"></div>
+          <h1 id="resultTitle"></h1>
+
+          <div class="score-display">
+            <div class="score-number" id="scoreNumber"></div>
+            <div class="score-text" id="scoreText"></div>
+            <div
+              class="score-text"
+              id="percentage"
+              style="margin-top: 10px; opacity: 0.9"
+            ></div>
+          </div>
+
+          <div class="stats">
+            <div class="stat-box">
+              <div class="stat-number" id="totalQuestions"></div>
+              <div class="stat-label">Total Questions</div>
+            </div>
+            <div class="stat-box correct">
+              <div class="stat-number" id="correctAnswers"></div>
+              <div class="stat-label">Correct Answers</div>
+            </div>
+            <div class="stat-box wrong">
+              <div class="stat-number" id="wrongAnswers"></div>
+              <div class="stat-label">Wrong Answers</div>
+            </div>
+          </div>
+
+          <button class="btn" onclick="restart()">New Exam</button>
+        </div>
+      </div>
+    </div>
+    
+    <script src="JS/script.js"></script>
+    
+  </body>
+</html>
