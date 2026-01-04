@@ -141,8 +141,6 @@ function renderNavbarUser() {
   }
 }
 
-// ✅ يمكن استدعاء هذه الدالة في أي صفحة بعد تحميل الـ DOM
-// مثال:
 // document.addEventListener("DOMContentLoaded", () => {
 //   renderNavbarUser();
 //   protectPage(); // لو الصفحة محتاجة حماية

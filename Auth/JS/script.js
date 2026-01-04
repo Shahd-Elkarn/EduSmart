@@ -72,7 +72,6 @@ function setupPasswordStrength() {
         if (/[0-9]/.test(password)) strength++;
         if (/[$@#&!]/.test(password)) strength++;
 
-        // Reset classes
         strengthBar.className = "password-strength-bar";
 
         if (password.length === 0) {
@@ -82,15 +81,15 @@ function setupPasswordStrength() {
 
         if (strength <= 2) {
             strengthBar.classList.add("weak");
-            strengthText.textContent = "ضعيف";
+            strengthText.textContent = "Weak";
             strengthText.style.color = "#e74c3c";
         } else if (strength <= 4) {
             strengthBar.classList.add("medium");
-            strengthText.textContent = "متوسط";
+            strengthText.textContent = "Medium";
             strengthText.style.color = "#f39c12";
         } else {
             strengthBar.classList.add("strong");
-            strengthText.textContent = "قوي";
+            strengthText.textContent = "Strong";
             strengthText.style.color = "#2ecc71";
         }
     });
@@ -133,17 +132,19 @@ function setupLoginForm() {
 
         let isValid = true;
 
-        // Validate email
         if (!validateEmail(email)) {
-            showError("loginEmail", "loginEmailError", "الإيميل غير صحيح");
+            showError("loginEmail", "loginEmailError", "Invalid email address");
             isValid = false;
         } else {
             showSuccess("loginEmail", "loginEmailError");
         }
 
-        // Validate password length
         if (password.length < 8) {
-            showError("loginPassword", "loginPasswordError", "كلمة المرور قصيرة جدًا (8 أحرف على الأقل)");
+            showError(
+                "loginPassword",
+                "loginPasswordError",
+                "Password must be at least 8 characters"
+            );
             isValid = false;
         } else {
             showSuccess("loginPassword", "loginPasswordError");
@@ -152,21 +153,29 @@ function setupLoginForm() {
         if (!isValid) return;
 
         const users = getAllUsers();
-        const user = users.find(u => u.email === email && u.password === password);
+        const user = users.find(
+            (u) => u.email === email && u.password === password
+        );
 
         if (!user) {
-            // رسالة عامة للأمان (ما نفرقش بين إيميل موجود أو كلمة مرور غلط)
-            showError("loginEmail", "loginEmailError", "الإيميل أو كلمة المرور غير صحيحة");
-            showError("loginPassword", "loginPasswordError", "الإيميل أو كلمة المرور غير صحيحة");
+            showError(
+                "loginEmail",
+                "loginEmailError",
+                "Invalid email or password"
+            );
+            showError(
+                "loginPassword",
+                "loginPasswordError",
+                "Invalid email or password"
+            );
             return;
         }
 
-        // حفظ المستخدم الحالي
         localStorage.setItem("currentUser", JSON.stringify(user));
 
         const successMsg = document.getElementById("loginSuccess");
         if (successMsg) {
-            successMsg.textContent = "تم تسجيل الدخول بنجاح! ✓";
+            successMsg.textContent = "Login successful! ✓";
             successMsg.classList.add("show");
         }
 
@@ -189,52 +198,71 @@ function setupRegisterForm() {
         const name = document.getElementById("registerName").value.trim();
         const email = document.getElementById("registerEmail").value.trim();
         const password = document.getElementById("registerPassword").value;
-        const confirmPassword = document.getElementById("registerConfirmPassword").value;
+        const confirmPassword = document.getElementById(
+            "registerConfirmPassword"
+        ).value;
 
         let isValid = true;
 
-        // Name
         if (!validateName(name)) {
-            showError("registerName", "registerNameError", "الاسم يجب أن يكون 3 أحرف على الأقل");
+            showError(
+                "registerName",
+                "registerNameError",
+                "Name must be at least 3 characters"
+            );
             isValid = false;
         } else {
             showSuccess("registerName", "registerNameError");
         }
 
-        // Email
         if (!validateEmail(email)) {
-            showError("registerEmail", "registerEmailError", "الإيميل غير صحيح");
+            showError(
+                "registerEmail",
+                "registerEmailError",
+                "Invalid email address"
+            );
             isValid = false;
         } else {
             showSuccess("registerEmail", "registerEmailError");
         }
 
-        // Check if email already exists
         const users = getAllUsers();
-        if (users.some(u => u.email === email)) {
-            showError("registerEmail", "registerEmailError", "هذا الإيميل مسجل مسبقًا");
+        if (users.some((u) => u.email === email)) {
+            showError(
+                "registerEmail",
+                "registerEmailError",
+                "This email is already registered"
+            );
             isValid = false;
         }
 
-        // Password
         if (!validatePassword(password)) {
-            showError("registerPassword", "registerPasswordError", "كلمة المرور ضعيفة: يجب 8 أحرف، حرف كبير، صغير، رقم، ورمز");
+            showError(
+                "registerPassword",
+                "registerPasswordError",
+                "Weak password: minimum 8 characters, uppercase, lowercase, number, and symbol"
+            );
             isValid = false;
         } else {
             showSuccess("registerPassword", "registerPasswordError");
         }
 
-        // Confirm Password
         if (password !== confirmPassword) {
-            showError("registerConfirmPassword", "registerConfirmPasswordError", "كلمتا المرور غير متطابقتين");
+            showError(
+                "registerConfirmPassword",
+                "registerConfirmPasswordError",
+                "Passwords do not match"
+            );
             isValid = false;
         } else if (confirmPassword.length > 0) {
-            showSuccess("registerConfirmPassword", "registerConfirmPasswordError");
+            showSuccess(
+                "registerConfirmPassword",
+                "registerConfirmPasswordError"
+            );
         }
 
         if (!isValid) return;
 
-        // Create new user
         const newUser = {
             id: generateId(),
             name,
@@ -247,12 +275,12 @@ function setupRegisterForm() {
 
         const successMsg = document.getElementById("registerSuccess");
         if (successMsg) {
-            successMsg.textContent = "تم إنشاء الحساب بنجاح! ✓";
+            successMsg.textContent = "Account created successfully! ✓";
             successMsg.classList.add("show");
         }
 
         form.reset();
-        setupPasswordStrength(); // Reset strength indicator
+        setupPasswordStrength();
 
         setTimeout(() => {
             window.location.href = "/Auth/Login/Login.html";
@@ -262,39 +290,51 @@ function setupRegisterForm() {
 
 // ==================== Real-time Validation ====================
 function setupRealTimeValidation() {
-    // Login Email
     const loginEmail = document.getElementById("loginEmail");
     if (loginEmail) {
         loginEmail.addEventListener("blur", function () {
             if (this.value.trim() && !validateEmail(this.value)) {
-                showError("loginEmail", "loginEmailError", "الإيميل غير صحيح");
+                showError(
+                    "loginEmail",
+                    "loginEmailError",
+                    "Invalid email address"
+                );
             } else if (this.value.trim()) {
                 showSuccess("loginEmail", "loginEmailError");
             }
         });
     }
 
-    // Register Email
     const registerEmail = document.getElementById("registerEmail");
     if (registerEmail) {
         registerEmail.addEventListener("blur", function () {
             if (this.value.trim() && !validateEmail(this.value)) {
-                showError("registerEmail", "registerEmailError", "الإيميل غير صحيح");
+                showError(
+                    "registerEmail",
+                    "registerEmailError",
+                    "Invalid email address"
+                );
             } else if (this.value.trim()) {
                 showSuccess("registerEmail", "registerEmailError");
             }
         });
     }
 
-    // Confirm Password match
     const confirmPwd = document.getElementById("registerConfirmPassword");
     const passwordInput = document.getElementById("registerPassword");
     if (confirmPwd && passwordInput) {
         confirmPwd.addEventListener("input", function () {
             if (this.value && this.value !== passwordInput.value) {
-                showError("registerConfirmPassword", "registerConfirmPasswordError", "كلمتا المرور غير متطابقتين");
+                showError(
+                    "registerConfirmPassword",
+                    "registerConfirmPasswordError",
+                    "Passwords do not match"
+                );
             } else if (this.value) {
-                showSuccess("registerConfirmPassword", "registerConfirmPasswordError");
+                showSuccess(
+                    "registerConfirmPassword",
+                    "registerConfirmPasswordError"
+                );
             }
         });
     }
@@ -302,7 +342,6 @@ function setupRealTimeValidation() {
 
 // ==================== Main Init ====================
 document.addEventListener("DOMContentLoaded", () => {
-    // 🔹 مسح أي مستخدم حالي قديم عند تحميل صفحة الدخول/التسجيل
     localStorage.removeItem("currentUser");
 
     setupFormSwitching();

@@ -1,5 +1,3 @@
-// Generate Exam/JS/script.js
-// ⚠️ تأكد إن utils.js محمل قبل هذا الملف (في الـ HTML: <script src="utils.js"></script> أولاً)
 
 const questionsData = [
   // === Database Questions ===
