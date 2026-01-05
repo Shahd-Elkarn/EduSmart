@@ -270,14 +270,16 @@
 
         .pricing-card:hover {
             transform: translateY(-10px);
-        }
-
-        .pricing-card.featured {
             border: 3px solid #667eea;
             position: relative;
         }
 
-        .pricing-card.featured::before {
+        /* .pricing-card.featured {
+            border: 3px solid #667eea;
+            position: relative;
+        } */
+
+        /* .pricing-card.featured::before {
             content: "POPULAR";
             position: absolute;
             top: -15px;
@@ -288,7 +290,7 @@
             padding: 0.3rem 1rem;
             border-radius: 20px;
             font-size: 0.8rem;
-        }
+        } */
 
         .price {
             font-size: 2.5rem;
