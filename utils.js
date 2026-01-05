@@ -77,7 +77,6 @@ function logout() {
   }
 }
 
-// 8️⃣ عرض رسالة نجاح أو خطأ (مع إخفاء تلقائي)
 function showMessage(elementId, message, type = 'error') {
   const element = document.getElementById(elementId);
   if (!element) return;
@@ -86,30 +85,26 @@ function showMessage(elementId, message, type = 'error') {
   element.className = type; // 'error' أو 'success'
   element.style.display = 'block';
 
-  // إخفاء الرسالة بعد 5 ثواني
   setTimeout(() => {
     element.style.display = 'none';
   }, 5000);
 }
 
-// 9️⃣ توليد ID فريد وآمن نسبيًا
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
 }
 
-// 🔟 عرض اسم المستخدم وزر Logout في الـ Navbar
 function renderNavbarUser() {
   const navLinks = document.querySelector(".nav-links");
   if (!navLinks) return;
 
-  // إذا كان موجود بالفعل، متعملش حاجة (منع التكرار)
   if (document.getElementById("userWelcomeItem")) return;
 
   const currentUser = getCurrentUser();
   if (!currentUser) return;
 
   const userItem = document.createElement("li");
-  userItem.id = "userWelcomeItem"; // ID لمنع التكرار
+  userItem.id = "userWelcomeItem"; 
   userItem.style.display = "flex";
   userItem.style.alignItems = "center";
   userItem.style.gap = "1rem";
@@ -134,7 +129,6 @@ function renderNavbarUser() {
 
   navLinks.appendChild(userItem);
 
-  // إضافة حدث الخروج
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", logout);

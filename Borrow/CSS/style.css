@@ -1,0 +1,121 @@
+
+
+body{
+    font-family:'Segoe UI',Tahoma,sans-serif;
+    margin:0;
+    background:#f8f9fa;
+}
+
+ 
+         /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none !important;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+.container{
+    max-width:1200px;
+    margin:40px auto;
+    padding:0 1rem;
+}
+
+h1{
+    text-align:center;
+    color:#667eea;
+    margin-bottom:30px;
+}
+
+.library-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:.3s;
+    display:flex;
+    flex-direction:column;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card img{
+    height:220px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin:0;
+    font-size:1.1rem;
+}
+
+.status{
+    margin:10px 0;
+    font-weight:bold;
+}
+
+.available{color:green;}
+.borrowed{color:red;}
+
+button{
+    margin-top:auto;
+    padding:10px;
+    border:none;
+    border-radius:30px;
+    font-weight:bold;
+    cursor:pointer;
+    background:#667eea;
+    color:white;
+    transition:.3s;
+}
+
+button:hover{background:#5a6fdc;}
+
+button.return{background:#28a745;}
+button.return:hover{background:#218838;}

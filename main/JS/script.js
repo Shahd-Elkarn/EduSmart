@@ -20,6 +20,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     };
   }
+  // 2️⃣ Borrow Feature - Protected
+  const borrowFeature = document.getElementById("BorrowFeature");
+  if (borrowFeature) {
+    borrowFeature.onclick = function () {
+      if (typeof isLoggedIn === 'function' && isLoggedIn()) {
+        window.location.href = "/Borrow/library.html";
+      } else {
+        alert("You must log in first to access the exam generator");
+        window.location.href = "/Auth/Login/Login.html";
+      }
+    };
+  }
   
   // 3️⃣ Task Feature - Protected
   const taskFeature = document.getElementById("TaskFeature");
