@@ -58,6 +58,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+    // 5️⃣ Watch Demo Video Modal
+  const openVideoBtn = document.getElementById("openVideo");
+  const videoModal = document.getElementById("videoModal");
+  const closeVideoBtn = document.querySelector(".close");
+  const demoVideo = document.getElementById("demoVideo");
+
+  if (openVideoBtn && videoModal) {
+    openVideoBtn.addEventListener("click", function () {
+      videoModal.style.display = "flex";
+       document.body.style.overflow = 'hidden';
+      if (demoVideo) demoVideo.play();
+    });
+  }
+
+  if (closeVideoBtn) {
+    closeVideoBtn.addEventListener("click", function () {
+      videoModal.style.display = "none";
+       document.body.style.overflow = 'auto';
+      if (demoVideo) {
+        demoVideo.pause();
+        demoVideo.currentTime = 0;
+      }
+    });
+  }
+
+  window.addEventListener("click", function (e) {
+    if (e.target === videoModal) {
+      videoModal.style.display = "none";
+      if (demoVideo) {
+        demoVideo.pause();
+        demoVideo.currentTime = 0;
+      }
+    }
+  });
+
+
+
   // 5️⃣ Contact Form
   const contactForm = document.querySelector(".contact-form");
   const contactOverlay = document.getElementById("contactSuccessOverlay");
