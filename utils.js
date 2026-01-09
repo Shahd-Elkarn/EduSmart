@@ -1,6 +1,4 @@
-// utils.js - ملف مساعد لنظام المستخدمين (User System)
 
-// 1️⃣ جلب كل المستخدمين من localStorage
 function getAllUsers() {
   const usersData = localStorage.getItem('users');
   if (!usersData) return [];
@@ -12,7 +10,6 @@ function getAllUsers() {
   }
 }
 
-// 2️⃣ حفظ كل المستخدمين في localStorage
 function saveAllUsers(users) {
   try {
     localStorage.setItem('users', JSON.stringify(users));
@@ -21,7 +18,6 @@ function saveAllUsers(users) {
   }
 }
 
-// 3️⃣ جلب المستخدم الحالي (اللي مسجل دخول)
 function getCurrentUser() {
   const userData = localStorage.getItem("currentUser");
   if (!userData) return null;
@@ -35,7 +31,6 @@ function getCurrentUser() {
   }
 }
 
-// 4️⃣ تحديث بيانات المستخدم الحالي (اسم، صورة، إلخ)
 function updateCurrentUser(updatedData) {
   const currentUser = getCurrentUser();
   if (!currentUser) return false;
@@ -44,32 +39,25 @@ function updateCurrentUser(updatedData) {
   const userIndex = users.findIndex(user => user.email === currentUser.email);
 
   if (userIndex === -1) return false;
-
-  // دمج البيانات الجديدة مع القديمة
   users[userIndex] = { ...users[userIndex], ...updatedData };
 
-  // حفظ التغييرات في قاعدة البيانات الكلية
   saveAllUsers(users);
 
-  // تحديث الـ currentUser في localStorage
   localStorage.setItem("currentUser", JSON.stringify(users[userIndex]));
 
   return true;
 }
 
-// 5️⃣ فحص إذا كان المستخدم مسجل دخول
 function isLoggedIn() {
   return getCurrentUser() !== null;
 }
 
-// 6️⃣ حماية الصفحة - إعادة توجيه للـ Login إذا مش مسجل دخول
 function protectPage() {
   if (!isLoggedIn()) {
     window.location.href = "/Auth/Login/Login.html";
   }
 }
 
-// 7️⃣ تسجيل الخروج (Logout)
 function logout() {
   if (confirm("Do you want to log out?")) {
     localStorage.removeItem("currentUser");
@@ -82,7 +70,7 @@ function showMessage(elementId, message, type = 'error') {
   if (!element) return;
 
   element.textContent = message;
-  element.className = type; // 'error' أو 'success'
+  element.className = type; 
   element.style.display = 'block';
 
   setTimeout(() => {
