@@ -10,7 +10,6 @@ const API_URL =
 "https://www.googleapis.com/books/v1/volumes?q=computer+science&maxResults=8";
 
 // ==================== GLOBAL BORROWED BOOKS ====================
-// شكل الداتا:
 // {
 //   "BOOK_ID": "user@email.com"
 // }
@@ -82,7 +81,6 @@ function borrowBook(id){
 
 // ==================== RETURN BOOK ====================
 function returnBook(id){
-    // تأكيد إن اللي بيرجع هو صاحب الكتاب
     if (borrowedBooks[id] !== currentUser.email) return;
 
     delete borrowedBooks[id];

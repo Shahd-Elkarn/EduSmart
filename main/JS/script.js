@@ -1,9 +1,8 @@
 // main/JS/script.js - Landing Page
-// ⚠️ تأكدي إن utils.js محمل قبل الملف ده
 
 document.addEventListener('DOMContentLoaded', function() {
   
-  protectPage();       // يحمي الصفحة
+  protectPage();        
   renderNavbarUser();
   // 1️⃣ Check login and show logout button
   // checkLoginStatus();
